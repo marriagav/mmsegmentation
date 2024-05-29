@@ -4,9 +4,28 @@ import random
 from PIL import Image
 
 def compress_images():
-    for i,file in enumerate(os.listdir('train')):
-    # compress the image
-        img = Image.open("train/"+file)
-        img = img.resize((562, 562), Image.LANCZOS)
-        img.save("train_resized/"+file, quality=95)
-        print(img.size)
+    # Create the destination directory if it doesn't exist
+    if not os.path.exists('train_resized'):
+        os.makedirs('train_resized')
+        
+    for i, file in enumerate(os.listdir('train')):
+        # Open the image
+        img = Image.open(os.path.join('train', file))
+        
+        # Resize the image
+        img = img.resize((612, 612), Image.LANCZOS)
+        
+        # Convert to RGB if necessary
+        # if img.mode != 'RGB':
+        #     img = img.convert('RGB')
+        
+        # Construct the new filename with .jpg extension
+        # new_filename = os.path.splitext(file)[0] + '.jpg'
+        
+        # Save the image in JPEG format
+        img.save(os.path.join('train_resized', file))
+        
+        num_channels = len(img.getbands())
+        print("CHANELS",num_channels)
+
+        print(f"Processed {file}: size {img.size}")

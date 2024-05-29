@@ -1,13 +1,14 @@
+# HERE
 dataset_type = 'DeepGlobeDataset'
 data_root = 'data/deep_globe/'
+crop_size = (612, 612)
 
-crop_size = (562, 562)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
     dict(
         type='RandomResize',
-        scale=(562, 562),
+        scale=(612, 612),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
@@ -17,7 +18,7 @@ train_pipeline = [
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=(562, 562), keep_ratio=True),
+    dict(type='Resize', scale=(612, 612), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
     dict(type='LoadAnnotations'),
