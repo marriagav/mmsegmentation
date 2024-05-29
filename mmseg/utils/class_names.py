@@ -2,6 +2,22 @@
 from mmengine.utils import is_str
 
 
+def deep_globe_classes():
+    return [
+        'urban_land', 'agriculture_land', 'rangeland', 'forest_land', 'water', 'barren_land', 'unknown'
+    ]
+
+def deep_globe_palette():
+    return [
+        [0, 255, 255],
+        [255,255,0],
+        [255,0,255],
+        [0,255,0],
+        [0,0,255],
+        [255,255,255],
+        [0,0,0]
+    ]
+
 def cityscapes_classes():
     """Cityscapes class names for external use."""
     return [
@@ -489,6 +505,7 @@ def hsidrive_palette():
 
 
 dataset_aliases = {
+    'deep_globe': ['deep_globe', 'deepglobe', "DeepGlobe"],
     'cityscapes': ['cityscapes'],
     'ade': ['ade', 'ade20k'],
     'voc': ['voc', 'pascal_voc', 'voc12', 'voc12aug'],
