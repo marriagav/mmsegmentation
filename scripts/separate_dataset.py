@@ -37,12 +37,12 @@ def send_to_correct(file, train_set=True):
     final_path = "train/" if train_set else "val/"
     if 'mask' in file:
         path = f'../data/deep_globe/ann_dir/{final_path}' + file
-        rgb_to_limited_grayscale("train_resized/" + file, path)
-        # os.rename("train_resized/"+file,path)
+        rgb_to_limited_grayscale("train/" + file, path)
+        # os.rename("train/"+file,path)
     else:
         path = f'../data/deep_globe/img_dir/{final_path}' + file
         print(path)
-        os.rename("train_resized/"+file,f'../data/deep_globe/img_dir/{final_path}' + file)
+        os.rename("train/"+file,f'../data/deep_globe/img_dir/{final_path}' + file)
 
 def separate_dataset():
     dict_map = {}
@@ -68,7 +68,7 @@ def separate_dataset():
     if not os.path.exists('../data/deep_globe/img_dir/train'):
         os.makedirs('../data/deep_globe/img_dir/train')
 
-    for i,file in enumerate(os.listdir('train_resized')):
+    for i,file in enumerate(os.listdir('train')):
         index = file.split("_")[0]
         if index in dict_map:
             rand_int = dict_map[index]
