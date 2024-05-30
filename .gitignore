@@ -3,6 +3,8 @@
 *.jpeg
 *.png
 
+/data/deep_globe
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
