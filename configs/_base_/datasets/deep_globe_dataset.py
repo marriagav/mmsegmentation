@@ -1,7 +1,7 @@
 # HERE
 dataset_type = 'DeepGlobeDataset'
 data_root = 'data/deep_globe/'
-crop_size = (612, 612)
+crop_size = (256, 256)
 
 train_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -15,14 +15,14 @@ train_pipeline = [
     # dict(type='RGB2Gray', out_channels = 6),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
-    dict(type='Resize', scale=(612, 612), keep_ratio=True),
+    dict(type='Resize', scale=(256, 256), keep_ratio=True),
     dict(type='PhotoMetricDistortion'),
     dict(type='PackSegInputs')
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     # dict(type='RGB2Gray', out_channels = 6),
-    dict(type='Resize', scale=(612, 612), keep_ratio=True),
+    dict(type='Resize', scale=(256, 256), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
     dict(type='LoadAnnotations'),
@@ -45,7 +45,7 @@ tta_pipeline = [
         ])
 ]
 train_dataloader = dict(
-    batch_size=2,
+    batch_size=8,
     num_workers=2,
     persistent_workers=True,
     sampler=dict(type='InfiniteSampler', shuffle=True),
