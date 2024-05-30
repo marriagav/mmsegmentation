@@ -1,13 +1,44 @@
 #HERE
 import os
 import random
+import cv2
+from PIL import Image
+import numpy as np
+
+def rgb_to_limited_grayscale(image_path, output_path):
+    # Open the image
+    img = Image.open(image_path)
+    
+    # Convert the image to grayscale
+    grayscale_img = img.convert("L")
+    
+    # Convert the image data to a numpy array
+    grayscale_array = np.array(grayscale_img)
+    
+    # Normalize the grayscale values to the range 0 to 1
+    normalized_array = grayscale_array / 255.0
+    
+    # Scale the normalized values to the range 0 to 6
+    scaled_array = normalized_array * 6
+    
+    # Convert the scaled values to integers
+    limited_grayscale_array = np.round(scaled_array).astype(np.uint8)
+    
+    # Convert the numpy array back to a PIL image
+    limited_grayscale_img = Image.fromarray(limited_grayscale_array)
+    
+    for i in range(len(limited_grayscale_array)):
+        print(limited_grayscale_array[i])
+        
+    # Save the transformed image
+    limited_grayscale_img.save(output_path)
 
 def send_to_correct(file, train_set=True):
     final_path = "train/" if train_set else "val/"
     if 'mask' in file:
         path = f'../data/deep_globe/ann_dir/{final_path}' + file
-        print(path)
-        os.rename("train_resized/"+file,path)
+        rgb_to_limited_grayscale("train_resized/" + file, path)
+        # os.rename("train_resized/"+file,path)
     else:
         path = f'../data/deep_globe/img_dir/{final_path}' + file
         print(path)
@@ -48,3 +79,5 @@ def separate_dataset():
             send_to_correct(file)
         else:
             send_to_correct(file, False)
+
+separate_dataset()

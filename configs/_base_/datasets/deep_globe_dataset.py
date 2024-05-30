@@ -6,18 +6,22 @@ crop_size = (612, 612)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
-    dict(
-        type='RandomResize',
-        scale=(612, 612),
-        ratio_range=(0.5, 2.0),
-        keep_ratio=True),
+    # dict(
+    #     type='RandomResize',
+    #     scale=(612, 612),
+    #     ratio_range=(0.5, 2.0),
+    #     keep_ratio=True),
+
+    # dict(type='RGB2Gray', out_channels = 6),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
+    dict(type='Resize', scale=(612, 612), keep_ratio=True),
     dict(type='PhotoMetricDistortion'),
     dict(type='PackSegInputs')
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
+    # dict(type='RGB2Gray', out_channels = 6),
     dict(type='Resize', scale=(612, 612), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform

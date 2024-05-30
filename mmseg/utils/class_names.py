@@ -17,6 +17,7 @@ def deep_globe_palette():
         [0,0,255],
         [255,255,255],
         [0,0,0]
+        # 0,1,2,3,4,5,6
     ]
 
 def cityscapes_classes():

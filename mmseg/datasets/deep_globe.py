@@ -9,6 +9,7 @@ class DeepGlobeDataset(BaseSegDataset):
     METAINFO = dict(
         classes=('urban_land', 'agriculture_land', 'rangeland', 'forest_land', 'water', 'barren_land', 'unknown'),
         palette=[[0, 255, 255], [255,255,0], [255,0,255], [0,255,0], [0,0,255], [255,255,255], [0,0,0]])
+        # palette = [0,1,2,3,4,5,6])
 
     def __init__(self,
                  img_suffix='_sat.jpg',
