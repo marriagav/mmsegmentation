@@ -13,7 +13,7 @@ def compress_images():
         img = Image.open(os.path.join('train', file))
         
         # Resize the image
-        # img = img.resize((612, 612), Image.LANCZOS)
+        img = img.resize((256, 256), Image.LANCZOS)
         
         # Convert to RGB if necessary
         # if img.mode != 'RGB':
