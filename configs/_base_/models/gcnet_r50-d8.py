@@ -1,3 +1,4 @@
+#HERE
 # model settings
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 data_preprocessor = dict(
@@ -31,7 +32,7 @@ model = dict(
         pooling_type='att',
         fusion_types=('channel_add', ),
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=7,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
@@ -44,7 +45,7 @@ model = dict(
         num_convs=1,
         concat_input=False,
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=7,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
