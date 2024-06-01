@@ -1,9 +1,13 @@
 # images
-*.jpg
-*.jpeg
-*.png
+# *.jpg
+# *.jpeg
+# *.png
 
 /data/deep_globe
+/scripts/test/
+/scripts/train/
+/scripts/train_resized/
+/scripts/val/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
