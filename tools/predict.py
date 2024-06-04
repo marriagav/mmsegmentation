@@ -3,7 +3,7 @@ import argparse
 import os
 
 def predict(model, weights, img_path, out_dir):
-    inferencer = MMSegInferencer(model=model, weights=weights)
+    inferencer = MMSegInferencer(model=model, classes=["unknown", "urban_land", "agriculture_land", "rangeland", "forest_land", "water", "barren_land"], palette=[[0, 0, 0], [0, 255, 255], [255,255,0], [255,0,255], [0,255,0], [0,0,255], [255,255,255]],weights=weights)
     result = inferencer(img_path, show=False, out_dir="./output/"+out_dir+"/predictions")
     return result
 
