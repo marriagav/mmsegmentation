@@ -108,13 +108,13 @@ class MMSegInferencer(BaseInferencer):
             if 'dataset_meta' in checkpoint_meta:
                 # mmsegmentation 1.x
                 model.dataset_meta = {
-                    'classes': checkpoint_meta['dataset_meta'].get('classes'),
-                    'palette': checkpoint_meta['dataset_meta'].get('palette')
+                    'classes': ["unknown", "urban_land", "agriculture_land", "rangeland", "forest_land", "water", "barren_land"],
+                    'palette': [[0, 0, 0], [0, 255, 255], [255,255,0], [255,0,255], [0,255,0], [0,0,255], [255,255,255]]
                 }
             elif 'CLASSES' in checkpoint_meta:
                 # mmsegmentation 0.x
-                classes = checkpoint_meta['CLASSES']
-                palette = checkpoint_meta.get('PALETTE', None)
+                classes = ["unknown", "urban_land", "agriculture_land", "rangeland", "forest_land", "water", "barren_land"]
+                palette = [[0, 0, 0], [0, 255, 255], [255,255,0], [255,0,255], [0,255,0], [0,0,255], [255,255,255]]
                 model.dataset_meta = {'classes': classes, 'palette': palette}
             else:
                 warnings.warn(
@@ -257,7 +257,7 @@ class MMSegInferencer(BaseInferencer):
                 draw_gt=False,
                 draw_pred=True,
                 out_file=out_file,
-                with_labels=with_labels)
+                with_labels=False)
             if return_vis:
                 results.append(self.visualizer.get_image())
             self.num_visualized_imgs += 1

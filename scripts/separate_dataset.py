@@ -34,13 +34,13 @@ def rgb_to_limited_grayscale(image_path, output_path):
     
     # Map each class to a grayscale value
     class_to_grayscale = {
-        "urban_land": 1,
-        "agriculture_land": 2,
-        "rangeland": 3,
-        "forest_land": 4,
-        "water": 5,
-        "barren_land": 6,
-        "unknown": 0,
+        "urban_land": 0,
+        "agriculture_land": 1,
+        "rangeland": 2,
+        "forest_land": 3,
+        "water": 4,
+        "barren_land": 5,
+        "unknown": 6,
     }
     
     # Iterate over each pixel in the image
@@ -108,5 +108,3 @@ def separate_dataset():
             send_to_correct(file)
         else:
             send_to_correct(file, False)
-
-separate_dataset()
