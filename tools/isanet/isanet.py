@@ -136,7 +136,7 @@ param_scheduler = [
     dict(
         begin=0,
         by_epoch=False,
-        end=20000,
+        end=10000,
         eta_min=0.0001,
         power=0.9,
         type='PolyLR'),
@@ -174,7 +174,7 @@ test_pipeline = [
     dict(type='LoadAnnotations'),
     dict(type='PackSegInputs'),
 ]
-train_cfg = dict(max_iters=20000, type='IterBasedTrainLoop', val_interval=2000)
+train_cfg = dict(max_iters=10000, type='IterBasedTrainLoop', val_interval=2000)
 train_dataloader = dict(
     batch_size=32,
     dataset=dict(
