@@ -5,12 +5,12 @@ from PIL import Image
 
 def compress_images():
     # Create the destination directory if it doesn't exist
-    if not os.path.exists('./train_resized'):
-        os.makedirs('./train_resized')
+    if not os.path.exists('./test_resized'):
+        os.makedirs('./test_resized')
         
-    for i, file in enumerate(os.listdir('train')):
+    for i, file in enumerate(os.listdir('test')):
         # Open the image
-        img = Image.open(os.path.join('train', file))
+        img = Image.open(os.path.join('test', file))
         
         # Resize the image
         img = img.resize((256, 256), Image.LANCZOS)
@@ -23,7 +23,7 @@ def compress_images():
         # new_filename = os.path.splitext(file)[0] + '.jpg'
         
         # Save the image in JPEG format
-        img.save(os.path.join('train_resized', file))
+        img.save(os.path.join('test_resized', file))
         
         num_channels = len(img.getbands())
         print("CHANELS",num_channels)
